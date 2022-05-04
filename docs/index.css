@@ -1,0 +1,1304 @@
+
+/* 스크롤바 꾸미기 시작 */
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(45, 45, 45, 0.3);
+    border-radius: 15px;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 5px; /* 임시 */
+    height: 7px; /* 임시 */
+  }
+  /* 스크롤바 꾸미기 끝 */
+  
+  
+  /*nom*/
+  :root {
+     --box-1--total-items-count:9;
+    --box-1--view-items-count:4;
+    --box-1--item-height:400px;
+    --site-width: 1920px;
+    overflow-y: overlay;
+  }
+  @import url("http://fonts.cdnfonts.com/css/maginia");
+  
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200;300;400&display=swap");
+  
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+KR:wght@300;400;500&display=swap");
+  
+  
+  html > body {
+    font-family: "Maginia", sans-serif;
+    background-color: #f7f7f7;
+    margin: 0 auto;
+    overflow-x: hidden;
+    user-select: none;
+    scroll-behavior: smooth;
+  }
+  body section {
+    color: #212121;
+    box-sizing: border-box;
+  }
+  .scroll{
+    position:fixed;
+    right:240px;
+    bottom:50px;
+    z-index:10;
+  }
+  .scroll img:nth-child(1){
+    animation: rotate infinite;
+    animation-duration:7s;
+  }
+  .scroll-2{
+    position:fixed;
+    right:240px;
+    bottom:50px;
+    z-index:10;
+  }
+  .scroll-2 img:nth-child(1){
+    animation: rotate infinite;
+    animation-duration:7s;
+  }
+  @keyframes rotate{
+    100%{
+      transform:rotate(360deg);
+    }
+  }
+  /*nom 끝*/
+  
+  /*lib*/
+  .con {
+    width: var(--site-width);
+    margin:0 auto;
+    height:100vh;
+  }
+  .inner {
+    width: 1440px;
+    margin: 0 auto;
+    z-index:1;
+  }
+  .sans {
+    font-family: "Noto Sans", sans-serif;
+  }
+  .kr {
+    font-family: "Noto Sans KR", sans-serif;
+  }
+  .white {
+    color: #f7f7f7;
+  }
+  .h1 {
+    font-size: 180px;
+    line-height: 160px;
+  }
+  .text-b{
+   font-size:36px; 
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .text-m{
+    font-size:24px;
+    font-weight:300;
+    white-space:nowrap;
+  }
+  .text-s{
+    font-size:18px;
+    font-weight:300;
+    white-space:nowrap;
+  }
+  /*lib 끝*/
+  
+  
+  /* 페이지 PC 버전 시작 */
+  html.pc .group > div > section {
+    height: 100vh;
+    width:100vw;
+  }
+  
+  html.pc .group-right {
+    position:relative;
+  }
+  
+  html.pc .group-right > div:last-child > section {
+    visibility:hidden;
+  }
+  
+  html.pc .group-right > div:first-child {
+    display:flex;
+    position:absolute;
+    height: var(--full-vh);
+  }
+  
+  html.pc .group-right.fixed > div:first-child {
+    position:fixed;
+  }
+  
+  html.pc .group-right > div:first-child > section {
+    width:100vw;
+    height: var(--full-vh);
+    flex-shrink:0;
+  }
+  /* 페이지 PC 버전 끝 */
+  
+  /* 페이지 모바일 버전 시작 */
+  html.mobile .group-right > div:last-child {
+    display:none;
+  }
+  /* 페이지 모바일 버전 끝 */
+  
+  
+  /*cus*/
+  
+  
+  .header {
+    width: 100%;
+    height: 70px;
+    top: 50px;
+    display: flex;
+    position: fixed;
+    z-index: 10;
+    color:#212121;
+  }
+  .header.dark{
+    color:#f7f7f7;
+  }
+  .group-right.dark{
+    background-color:#212121;
+    color:#f7f7f7;
+  }
+  .logo {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .menu-bar {
+    display: flex;
+    height: 100%;
+  }
+  .menu-bar > div.flex-grow {
+    flex-grow: 1;
+  }
+  .menu-bar > .menu {
+    display: flex;
+    margin-right: -40px;
+  }
+  .menu-bar > .menu a {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .menu-bar > .menu li a > span {
+    font-size: 18px;
+    letter-spacing: 1.2px;
+  }
+  .menu > li {
+    width: calc(100% / 5);
+  }
+  .menu > li > a {
+    padding: 0 40px;
+  }
+  
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width: 100%;
+    position: relative;
+    background-image: url(https://cdn.jsdelivr.net/gh/jiyeon-520/portfolio__brand/docs/img/bg.gif);
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+  /* main__filter blur */
+  .main > .main__filter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(7px);
+  }
+  /* main__title-box */
+  .inner>div.col {
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    z-index: 5;
+    padding-top:100px;
+  }
+  
+  /* main__title-text */
+  .inner>div.col div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+  }
+  .col > .text-second{
+    margin-top:-25px;
+  }
+  .col > .text-third{
+    margin-top:-25px;
+    margin-left:50px;
+  }
+  .col > .text-fourth{
+    margin-top:-25px;
+  
+  }
+  .main__title {
+    padding: 0 30px;
+  }
+  .main__sub {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  
+  .col > .text-first > h2.main__sub {
+    padding-left: 15px;
+  }
+  .col > .text-third {
+    margin-left: 20px;
+  }
+  
+  /* text-reveal ef*/
+  .col > div {
+    overflow: hidden;
+  }
+  .col > .text-first > * {
+    animation: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0.5s;
+    animation-duration: 1.5s;
+  }
+  .col > .text-second > * {
+    animation: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0.5s;
+    animation-duration: 1.9s;
+  }
+  .col > .text-third > * {
+    animation: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0.5s;
+    animation-duration: 2.3s;
+  }
+  .col > .text-fourth > * {
+    animation: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0.5s;
+    animation-duration: 2.7s;
+  }
+  @keyframes reveal {
+    0% {
+      transform: translate(0, 250%);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+  
+  /* about-1 */
+  .about-1{
+    display: flex;
+    flex-direction: column;
+  }
+  .about__title {
+    display: flex;
+    margin-top: 200px;
+  }
+  
+  /* about-2 */
+  .about-2{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+  }
+  .about-2__title {
+    display: flex;
+    opacity:.3;
+  }
+  .about-2__box {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top:-100px;
+  }
+  .about-2__box > .about-2__img {
+    display: flex;
+    width: 500px;
+    height: 643px;
+    z-index:5;
+    background-image:url(https://cdn.jsdelivr.net/gh/jiyeon-520/portfolio__brand/docs/img/about__img.png);
+  }
+  .about-2__box > .about-2__img>h2{
+    font-size:120px;
+    margin-left:87%;
+    line-height:105px;
+    margin-top:150px;
+  }
+  .about-2__box > .about-2__text-box {
+    width: 520px;
+    height: 300px;
+    margin-left: 25px;
+    margin-bottom:40px;
+    position:relative;
+    
+  }
+  .about-2__text-box > .about-2__text>section{
+    float:left;
+  }
+  .about-2__text-box > .about-2__text>section>dl{
+    display:table;
+    margin-top:10px;
+  }
+  .about-2__text-box > .about-2__text>section>dl>dt{
+    display:table-cell;
+  }
+  .about-2__text-box > .about-2__text>section>dl>dt>dd{
+    display:table-cell;
+  }
+  .about-2__text-box > .about-2__text>section:first-child>dl>dt{
+    padding-right:63px;
+  }
+  .about-2__text-box > .about-2__text>section:nth-child(2){
+    float:right;
+    margin-right:-30px;
+  }
+  .about-2__text-box > .about-2__text>section:nth-child(2)>dl>dt.text-s{
+    padding-bottom:15px;
+    
+  }
+  .about-2__text-box > .about-2__text>section:nth-child(3)>dl>dd.text-s {
+    padding-left:38px;
+    margin-top:-12px;
+  }
+  .about-2__text-box > .about-2__text>section:nth-child(3){
+    padding-top:20px;
+  }
+  .about-2__text-box > .about-2__text-none{
+      width: 515px;
+    height: 300px;
+    margin-top:50px;
+    position:absolute;
+    left:0;
+  }
+  .about-2__text-box > .about-2__text-none>h3{
+    font-weight:bold;
+  }
+  .about-2__text-box > .about-2__text-none>h4{
+    margin-top:25px;
+    line-height:33px;
+  }
+  
+  /* about-3 */
+  .about-3{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+  }
+  .about-3__title {
+    display: flex;
+    opacity:.3;
+  }
+  .about-3__box {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top:-100px;
+  }
+  .about-3__box > .about-3__img {
+    display: flex;
+    width: 500px;
+    height: 643px;
+    z-index:5;
+    background-image:url(https://cdn.jsdelivr.net/gh/jiyeon-520/portfolio__brand/docs/img/about__img.png);
+  }
+  .about-3__box > .about-3__img>h2{
+    font-size:120px;
+    margin-left:87%;
+    line-height:105px;
+    margin-top:150px;
+  }
+  .about-3__box > .about-3__text-box {
+    width: 520px;
+    height: 300px;
+    margin-left: 25px;
+    margin-bottom:40px;
+    position:relative;
+    
+  }
+  .about-3__text-box > .about-3__text-none{
+      width: 515px;
+    height: 300px;
+    margin-top:50px;
+    position:absolute;
+    left:0;
+  }
+  .about-3__text-box > .about-3__text-none>h3{
+    font-weight:bold;
+  }
+  .about-3__text-box > .about-3__text-none>h4{
+    margin-top:25px;
+    line-height:33px;
+  }
+  
+  /* about-ani */
+  .active-ani-1 {
+    transition: all 1s;
+    opacity:0;
+  }
+  
+  .active .active-ani-1 {
+    opacity:1;
+  }
+  
+  .active-ani-2 {
+    
+    transform:translateY(-100%);
+    opacity:0;
+  }
+  
+  .active .active-ani-2 {
+    transform:translateY(0);
+    opacity:1;
+    transition: all 1s;
+  }
+  .active-ani-3 {
+    transition: all 1s;
+    transform:translateY(100%);
+    opacity:0;
+  }
+  
+  .active .active-ani-3 {
+    transform:translateY(0);
+    opacity:1;
+  }
+  
+  
+  /* possibility */
+  .possibility{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .possibility__title{
+    display:flex;
+    opacity:.3;
+  }
+  .possibility__box{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    height:511px;
+    margin-top:100px;
+  }
+  .possibility__box > .possibility__text{
+    display:flex;
+    flex-direction:column;
+    line-height:25px;
+    width:534px;
+  }
+  .possibility__text>section dt{
+    font-weight:600;
+  }
+  .possibility__text>section:nth-child(1){
+    margin-bottom:50px;
+  }
+  .possibility__text>section:nth-child(2){
+    margin-bottom:50px;
+  }
+  .possibility__box > .possibility__img{
+    margin-left:100px;
+    width:620px;
+    position:relative;
+  }  
+  .possibility__img-1{
+    position:absolute;
+    top:39px ;
+    left:80px;
+  }
+  .active-ani-4 {
+    transition: all 1s;
+    transform:scale(.5);
+    opacity:0;
+  }
+  
+  .active .active-ani-4 {
+    transform:scale(1);
+    opacity:1;
+  }
+  /* skills */
+  .skills{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .skills__title{
+    display:flex;
+    opacity:.3;
+  }
+  .skills__box{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    height:511px;
+    margin-top:80px;
+    position:relative;
+  }
+  .skills__text{
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    position:absolute; 
+  }
+  .skills__text.text-first{
+    top:311px;
+    left:0;
+  }
+  .skills__text.text-first>.text-m{
+    font-weight:bold;
+  }
+  .skills__text.text-second{
+    top:50px;
+    left:319px;
+  }
+  .skills__text.text-second>.text-m{
+    font-weight:bold;
+  }
+  .skills__text.text-third{
+    top:311px;
+    left:605px;
+  }
+  .skills__text.text-third>.text-m{
+    font-weight:bold;
+  }
+  .skills__text.text-fourth{
+    top:50px;
+    left:903px;
+  }
+  .skills__text.text-fourth>.text-m{
+    font-weight:bold;
+  }
+  .skills__text.text-fifth{
+    top:311px;
+    right:0px;
+  }
+  .skills__text.text-fifth>.text-m{
+    font-weight:bold;
+  }
+  .skills__arr-down{
+    position:absolute;
+    top:246px;
+  }
+  .skills__arr-up{
+    position:absolute;
+    top:221px;
+  }
+  .skills__arr-down.down-first{
+    left:115px;
+  }
+  .skills__arr-down.down-second{
+    left:710px;
+  }
+  .skills__arr-down.down-third{
+    left:1318px;
+  }
+  .skills__arr-up.up-first{
+    left:413px;
+  }
+  .skills__arr-up.up-second{
+    left:1012px;
+  }
+  .active-ani-5 {
+    transition: all .5s;
+    opacity:0;
+  }
+  
+  .active .active-ani-5 {
+    opacity:1;
+  }
+  .active-ani-6 {
+    transition: all .5s;
+    transition-delay:.15s;
+    opacity:0;
+  }
+  
+  .active .active-ani-6 {
+    opacity:1;
+  }
+  .active-ani-7 {
+    transition: all .5s;
+    transition-delay:.3s;
+    opacity:0;
+  }
+  
+  .active .active-ani-7 {
+    opacity:1;
+  }
+  .active-ani-8 {
+    transition: all .5s;
+    transition-delay:.45s;
+    opacity:0;
+  }
+  
+  .active .active-ani-8 {
+    opacity:1;
+  }
+  .active-ani-9 {
+    transition: all .5s;
+    transition-delay:.6s;
+    opacity:0;
+  }
+  
+  .active .active-ani-9 {
+    opacity:1;
+  }
+  .active-ani-10 {
+    transition: all .5s;
+    transition-delay:.75s;
+    opacity:0;
+  }
+  
+  .active .active-ani-10 {
+    opacity:1;
+  }
+  .active-ani-11 {
+    transition: all .5s;
+    transition-delay:.9s;
+    opacity:0;
+  }
+  
+  .active .active-ani-11 {
+    opacity:1;
+  }
+  .active-ani-12 {
+    transition: all .5s;
+    transition-delay:1.05s;
+    opacity:0;
+  }
+  
+  .active .active-ani-12 {
+    opacity:1;
+  }
+  .active-ani-13 {
+    transition: all .5s;
+    transition-delay:1.2s;
+    opacity:0;
+  }
+  
+  .active .active-ani-13 {
+    opacity:1;
+  }
+  .active-ani-14 {
+    transition: all .5s;
+    transition-delay:1.35s;
+    opacity:0;
+  }
+  
+  .active .active-ani-14 {
+    opacity:1;
+  }
+  
+  /* work-1 */
+  .work-1{
+    display:flex;
+    flex-direction:column;
+  }
+  .work-1__title{
+    display:flex;
+    margin-top:200px;
+    color:#f7f7f7;
+  }
+  
+  /* work-2 */
+  .work-2{
+    background-color:#212121;
+    background-image:url(https://cdn.jsdelivr.net/gh/jiyeon-520/portfolio__brand/docs/img/work-2__img-bg.png); 
+    background-repeat:no-repeat;
+    z-index:50;
+  }
+  .work-2 *{
+    color:#f7f7f7;
+  }
+  .work-2{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .work-2__title{
+    display:flex;
+    opacity:.3;
+    font-weight:300;
+  }
+  .work-2__box{
+      display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    height:600px;
+    margin-top:-70px;
+  }
+  .work-2__text{
+    margin-top:190px;
+  }
+  .work-2__text>section:nth-child(1){
+    margin-bottom:50px;
+  }
+  .work-2__text>section:nth-child(1)>dl{
+    text-align:end;
+  }
+  .work-2__text>section:nth-child(1)>dl>dd{
+    margin-top:30px;
+    line-height:30px;
+  }
+  .work-2__text>section:nth-child(1)>dl>dd>span{
+    font-size:16px;
+    text-align:end;
+    line-height:45px;
+  }
+  .work-2__text>section.skill{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:-55px;
+  }
+  .work-2__text>section.button{
+    display:flex;
+   margin-left:calc(100% - 150px);
+    margin-top:15px;
+    width:150px;
+    height:30px;
+    background-color:#f7f7f7;
+  }
+  .work-2__text>section.button>a{
+    display:flex;
+    height:100%;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+  }
+  .work-2__text>section.button>a>span{
+    color:#212121;
+  }
+  .work-2__img{
+    margin-left:250px;
+    
+  }
+  
+  /* work-3 */
+  .work-3{
+    background-color:#212121;
+    background-image:url(https://cdn.jsdelivr.net/gh/jiyeon-520/portfolio__brand/docs/img/work-3__img-bg.png); 
+    background-repeat:no-repeat;
+      display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .work-3 *{
+    color:#f7f7f7;
+  }
+  .work-3__title{
+    display:flex;
+    opacity:.3;
+    font-weight:300;
+  }
+  .work-3__box{
+      display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    height:600px;
+    margin-top:-70px;
+  }
+  .work-3__text{
+    margin-top:190px;
+  }
+  .work-3__text>section:nth-child(1){
+    margin-bottom:50px;
+  }
+  .work-3__text>section:nth-child(1)>dl{
+    text-align:end;
+  }
+  .work-3__text>section:nth-child(1)>dl>dd{
+    margin-top:30px;
+    line-height:30px;
+  }
+  .work-3__text>section:nth-child(1)>dl>dd>span{
+    font-size:16px;
+    text-align:end;
+    line-height:45px;
+  }
+  .work-3__text>section.skill{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:-55px;
+  }
+  .work-3__text>section.button{
+    display:flex;
+    margin-left:calc(100% - 150px);
+    margin-top:15px;
+    width:150px;
+    height:30px;
+    background-color:#f7f7f7;
+  }
+  .work-3__text>section.button-1{
+    margin-left:calc(100% - 310px)
+  }
+  .work-3__text>section.button-2{
+    margin-top:-30px;
+  }
+  .work-3__text>section.button>a{
+    display:flex;
+    height:100%;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+  }
+  .work-3__text>section.button>a>span{
+    color:#212121;
+  }
+  .work-3__img{
+    margin-left:250px;
+    z-index:5;
+  }
+  
+  /* work-4 */
+  .work-4{
+    background-color:#212121;
+    background-image:url(https://cdn.jsdelivr.net/gh/jiyeon-520/portfolio__brand/docs/img/work-4__img-bg.png); 
+    background-repeat:no-repeat;
+      display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .work-4 *{
+    color:#f7f7f7;
+  }
+  .work-4__title{
+    display:flex;
+    opacity:.3;
+    font-weight:300;
+  }
+  .work-4__box{
+      display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    height:600px;
+    margin-top:-70px;
+  }
+  .work-4__text{
+    margin-top:190px;
+  }
+  .work-4__text>section:nth-child(1){
+    margin-bottom:50px;
+  }
+  .work-4__text>section:nth-child(1)>dl{
+    text-align:end;
+  }
+  .work-4__text>section:nth-child(1)>dl>dd{
+    margin-top:30px;
+    line-height:30px;
+  }
+  .work-4__text>section:nth-child(1)>dl>dd>span{
+    font-size:16px;
+    text-align:end;
+    line-height:45px;
+  }
+  .work-4__text>section.skill{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:-55px;
+  }
+  .work-4__text>section.button{
+    display:flex;
+    margin-left:195px;
+    margin-top:15px;
+    width:150px;
+    height:30px;
+    background-color:#f7f7f7;
+  }
+  .work-4__text>section.button-2{
+    margin-left:353px;
+    margin-top:-30px;
+  }
+  .work-4__text>section.button>a{
+    display:flex;
+    height:100%;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+  }
+  .work-4__text>section.button>a>span{
+    color:#212121;
+  }
+  .work-4__img{
+    margin-left:250px;
+    z-index:5;
+  }
+  
+  /* work-5 */
+  .work-5{
+    background-color:#212121;
+    background-image:url(https://cdn.jsdelivr.net/gh/jiyeon-520/portfolio__brand/docs/img/work-5__img-bg.png); 
+    background-repeat:no-repeat;
+      display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .work-5 *{
+    color:#f7f7f7;
+  }
+  .work-5__title{
+    display:flex;
+    opacity:.3;
+    font-weight:300;
+  }
+  .work-5__box{
+      display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    height:600px;
+    margin-top:-70px;
+  }
+  .work-5__text{
+    margin-top:190px;
+  }
+  .work-5__text>section:nth-child(1){
+    margin-bottom:50px;
+  }
+  .work-5__text>section:nth-child(1)>dl{
+    text-align:end;
+  }
+  .work-5__text>section:nth-child(1)>dl>dd{
+    margin-top:30px;
+    line-height:30px;
+  }
+  .work-5__text>section:nth-child(1)>dl>dd>span{
+    font-size:16px;
+    text-align:end;
+    line-height:45px;
+  }
+  .work-5__text>section.skill{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:-55px;
+  }
+  .work-5__text>section.button{
+    display:flex;
+    margin-left:405px;
+    margin-top:15px;
+    width:150px;
+    height:30px;
+    background-color:#f7f7f7;
+  }
+  .work-5__text>section.button>a{
+    display:flex;
+    height:100%;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+  }
+  .work-5__text>section.button>a>span{
+    color:#212121;
+  }
+  .work-5__img{
+    margin-left:250px;
+    
+    z-index:5;
+  }
+  
+  /* work-6 */
+  .work-6{
+    background-color:#212121;
+    background-image:url(https://cdn.jsdelivr.net/gh/jiyeon-520/portfolio__brand/docs/img/work-6__img-bg.png); 
+    background-repeat:no-repeat;
+        display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .work-6 *{
+    color:#f7f7f7;
+  
+  }
+  .work-6__title{
+    display:flex;
+    opacity:.3;
+    font-weight:300;
+  }
+  .work-6__box{
+      display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    height:600px;
+    margin-top:-70px;
+  }
+  .work-6__text{
+    margin-top:190px;
+    text-align:end;
+  }
+  .work-6__text>section:nth-child(1){
+    margin-bottom:50px;
+  }
+  .work-6__text>section:nth-child(1)>dl{
+    text-align:end;
+  }
+  .work-6__text>section:nth-child(1)>dl>dd{
+    margin-top:30px;
+    line-height:30px;
+  }
+  .work-6__text>section:nth-child(1)>dl>dd>span{
+    font-size:16px;
+    text-align:end;
+    line-height:45px;
+  }
+  .work-6__text>section.skill{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:-55px;
+    height:74px;
+    width:74px;
+    margin-left:calc(100% - 74px);
+  }
+  .work-6__text>section.button{
+    display:flex;
+    margin-left:295px;
+    margin-top:15px;
+    width:150px;
+    height:30px;
+    background-color:#f7f7f7;
+  }
+  .work-6__text>section.button>a{
+    display:flex;
+    height:100%;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+  }
+  .work-6__text>section.button>a>span{
+    color:#212121;
+  }
+  .work-6__img{
+    margin-left:250px;
+    
+    z-index:5;
+  }
+  
+  /* exp-1 */
+  .exp-1{
+    display: flex;
+    flex-direction: column;
+  }
+  .exp-1__title {
+    display: flex;
+    margin-top: 200px;
+    
+  }
+  
+  /* exp-2 */
+  .exp-2{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    
+  }
+  .exp-2>.inner{
+    position:relative;
+  }
+  .exp-2 .absolute{
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+  }
+  .exp-2__title {
+    display: flex;
+    opacity:.3;
+  }
+  .exp-2__box-1 {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .exp-2__box-1 > .exp-2__img {
+    display: flex;
+    width: 297px;
+    height:420px;
+    z-index:5;
+    background-image:url(https://cdn.jsdelivr.net/gh/jiyeon-520/portfolio__brand/docs/img/exp-2__img-1.png);
+  }
+  .exp-2__box-1 > .exp-2__text {
+    width:270px;
+    height: 80px;
+    margin-left: 25px;
+  }
+  .exp-2__box-1 > .exp-2__text dd{
+    line-height:22px;
+  }
+  .exp-2__box-2 {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top:25px;
+  }
+  .exp-2__box-2 > .exp-2__img-2 {
+    display: flex;
+    width: 297px;
+    height:420px;
+    z-index:5;
+    background-image:url(https://cdn.jsdelivr.net/gh/jiyeon-520/portfolio__brand/docs/img/exp-2__img-2.png);
+  }
+  .exp-2__box-2 > .exp-2__text-2 {
+    width:270px;
+    height: 80px;
+    margin-right: 25px;
+    text-align:end;
+  }
+  .exp-2__box-2 > .exp-2__text-2 dd{
+    line-height:22px;
+  }
+  .box-1.absolute {
+    height:100%;
+    width:250px;
+    overflow:hidden;
+    left:120px;
+  }
+  
+  .box-1 > ul {
+    animation-name: ani-1;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change:transform;
+  }
+  
+  .box-1 > ul > li {
+    height:var(--box-1--item-height);
+  }
+  
+  .box-1 > ul > li > img {
+    display:block;
+    margin:0 auto;
+  }
+  .box-1 > ul:hover {
+    animation-play-state:paused;
+  }
+  
+  .box-2.absolute {
+    height:100%;
+    width:250px;
+    overflow:hidden;
+    left:1310px;
+  }
+  
+  .box-2 > ul {
+    animation-name: ani-2;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change:transform;
+  }
+  
+  .box-2 > ul > li {
+    height:var(--box-1--item-height);
+  }
+  
+  .box-2 > ul > li > img {
+    display:block;
+    margin:0 auto;
+  }
+  
+  .box-2 > ul:hover {
+    animation-play-state:paused;
+  }
+  
+  
+  @keyframes ani-1 {
+    0% {
+      transform:translateY(0);
+    }
+    
+    100% {
+      transform:translateY(calc(var(--box-1--item-height) * var(--box-1--total-items-count) * -1));
+    }
+  }
+  @keyframes ani-2 {
+    0% {
+       transform:translateY(calc(var(--box-1--item-height) * var(--box-1--total-items-count) * -1));
+      
+    }
+    
+    100% {
+     transform:translateY(0);
+    }
+  }
+  
+  
+  /* contact-1 */
+  .contact-1{
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-1__title {
+    display: flex;
+    margin-top: 200px;
+    
+  }
+  .contact-1__sub{
+    display:flex;
+    font-size:100px;
+    opacity:.5;
+  }
+  .contact-1 div.flex{
+    height:170px;
+    align-items:center;
+    justify-content:center;
+  }
+  .contact-1 div.flex > img{
+    height:2px;
+    display:flex;
+    margin-right:50px;
+  }
+  
+  /* contact-2 */
+  .contact-2{
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-2>.inner{
+      position:relative;
+    height:100%;
+  }
+  .contact-2__title {
+    display: flex;
+    margin-top: 200px;
+    
+  }
+  .contact-2__sub{
+    display:flex;
+    font-size:100px;
+    opacity:.5;
+  }
+  .contact-2 div.flex{
+    height:170px;
+    align-items:center;
+    justify-content:center;
+  }
+  .contact-2 div.flex > img{
+    height:2px;
+    display:flex;
+    margin-right:50px;
+  }
+  .contact-2 div.flex + img{
+  position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+  }
+  .contact-2 .end{
+  position:absolute;
+    left:50%;
+    transform:translatex(-50%);
+    top:calc(100% - 50px);
+  }
